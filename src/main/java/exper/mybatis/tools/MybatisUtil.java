@@ -1,4 +1,4 @@
-package exper.mybatis;
+package exper.mybatis.tools;
 
 import org.apache.ibatis.datasource.pooled.PooledDataSourceFactory;
 import org.apache.ibatis.io.Resources;
@@ -22,12 +22,17 @@ public class MybatisUtil {
     static{
         try {
             if (sqlSessionFactory ==null){
-            InputStream is = Resources.getResourceAsStream("mybatis-config.xml");
+            InputStream is = Resources.getResourceAsStream("mybatis-config/mybatis-config.xml");
             sqlSessionFactory = new SqlSessionFactoryBuilder().build(is);
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    //创建能执行映射文件中sql的sqlSession
+    public static SqlSession getSession(){
+        return sqlSessionFactory.openSession();
     }
 
     public static void selectOne(){

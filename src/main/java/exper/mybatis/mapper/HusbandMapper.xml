@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="exper.mybatis.mapper.HusbandMapper">
+
+    <resultMap type="HusbandBean" id="husbandAndWife">
+        <id property="id" column="id" javaType="java.lang.Integer"/>
+        <result property="name" column="husband_name" javaType="java.lang.String"/>
+
+        <!--  association – 一个复杂的类型关联；许多结果将包成这种类型
+              嵌入结果映射 – 结果映射自身的关联，或者参考一个
+              column="id" 这里的id指的是在t_wife表来的主键id
+              这个查询妻子，所以在妻子mapper里有个方法 -->
+        <association property="wife" column="id" javaType="WifeBean" select="exper.mybatis.mapper.WifeMapper.selectWifeByHusbandId">
+            <result property="name" column="wife_name" javaType="java.lang.String"/>
+        </association>
+    </resultMap>
+
+    <!-- resultType 返回类型 从这条语句中返回的期望类型的类的完全限定名或别名
+                                               。-->
+    <select id="selectHusbandById" resultType="HusbandBean">
+        select * from t_husband where id=#{id}
+    </select>
+
+    <!-- resultMap  命名引用外部的 resultMap。返回的是一个集合。-->
+    <select id="selectHusbandAndWife" resultMap="husbandAndWife">
+        select * from t_husband where id=#{id}
+    </select>
+
+
+
+
+</mapper>

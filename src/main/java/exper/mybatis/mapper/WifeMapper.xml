@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="exper.mybatis.mapper.WifeMapper">
+    <resultMap id="wifeMap" type="WifeBean">
+        <id property="id" column="id" javaType="java.lang.Integer"/>
+        <result property="name" column="wife_name" javaType="java.lang.String"></result>
+    </resultMap>
+
+    <select id="selectWifeByHusbandId" resultMap="wifeMap">
+        select * from t_wife where fk_husband_id = #{id}
+
+    </select>
+</mapper>
