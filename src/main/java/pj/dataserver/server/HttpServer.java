@@ -26,13 +26,13 @@ import java.util.concurrent.TimeUnit;
  */
 public class HttpServer {
 
-    public volatile CharSequence curDateTime = DateUtil.nowGMT();
-    public final CharSequence SERVER_NAME = String.format("Netty/%s (%s)",
-                                                          Version.identify()
-                                                                 .get("nett-common")
-                                                                 .artifactVersion(),
-                                                          System.getProperties()
-                                                                .getProperty("os.name"));
+    //public volatile CharSequence curDateTime = DateUtil.nowGMT();
+    //public final CharSequence SERVER_NAME = String.format("Netty/%s (%s)",
+    //                                                      Version.identify()
+    //                                                             .get("nett-common")
+    //                                                             .artifactVersion(),
+    //                                                      System.getProperties()
+    //                                                            .getProperty("os.name"));
 
     private final NettyConfig config;
 
